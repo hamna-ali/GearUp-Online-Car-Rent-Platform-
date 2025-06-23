@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center fw-bold">Contact Us</h2>
+    <p class="text-center text-muted">Any questions or remarks? Just write us a message!</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <form>
+                <div class="mb-3">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter a valid email address" required>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="Enter your Name" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control form-control-lg" placeholder="Write your message here..." rows="4" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5 text-center text-white p-4 bg-dark rounded">
+        <div class="col-md-4">
+            <h5>ABOUT BOOKING</h5>
+            <p>Running Guide</p>
+            <p>Car Rentals</p>
+        </div>
+        <div class="col-md-4">
+            <h5>PHONE (LANDLINE)</h5>
+            <p>+912 3 567 8987</p>
+            <p>+912 5 252 3336</p>
+        </div>
+        <div class="col-md-4">
+            <h5>OUR LOCATION</h5>
+            <p>The car rental company</p>
+            <p>The Courtyard, Al Quoz 1, Colorado, USA</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 1200px;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        background-color: #212529;
+        color: #FFFFFF;
+        border: none;
+        transition: 0.3s;
+    }
+
+        .btn:hover {
+            background-color: #d3d3d3
+</style>

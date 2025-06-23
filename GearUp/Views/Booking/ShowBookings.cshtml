@@ -1,0 +1,36 @@
+﻿@model List<GearUp.Models.Booking>
+
+<h2 class="mb-4 text-white">All Bookings</h2>
+
+<table class="table table-bordered table-dark table-hover">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>User Email</th>
+            <th>Car Plate Number</th>
+            <th>Booking Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.BookingID</td>
+                    <td>@booking.Username</td>
+                    <td>@booking.VehiclePlateNumber</td>
+                    <td>@booking.BookingDateTime.ToString("yyyy-MM-dd")</td>
+                    <td>@booking.ReturnDate.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No bookings found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

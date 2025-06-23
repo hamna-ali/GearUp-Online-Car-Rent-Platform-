@@ -1,0 +1,68 @@
+﻿@page
+@model GearUp.Areas.Identity.Pages.Account.UpdateModel
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Update Profile";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center fw-bold">Manage Your Profile</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+
+            <!-- Full Name -->
+            <form method="post" asp-page-handler="UpdateFullName">
+                <div class="d-flex mb-3">
+                    <input asp-for="Input.FullName" class="form-control form-control-lg me-2" style="width: 70%;" placeholder="Full Name" />
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 30%;">Update</button>
+                </div>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </form>
+
+            <!-- Address -->
+            <form method="post" asp-page-handler="UpdateAddress">
+                <div class="d-flex mb-3">
+                    <input asp-for="Input.Address" class="form-control form-control-lg me-2" style="width: 70%;" placeholder="Address" />
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 30%;">Update</button>
+                </div>
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </form>
+
+            <!-- Phone -->
+            <form method="post" asp-page-handler="UpdatePhone">
+                <div class="d-flex mb-3">
+                    <input asp-for="Input.Phone" class="form-control form-control-lg me-2" style="width: 70%;" placeholder="Phone" />
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 30%;">Update</button>
+                </div>
+                <span asp-validation-for="Input.Phone" class="text-danger"></span>
+            </form>
+
+            <!-- Change Password -->
+            <form method="post" asp-page-handler="UpdatePassword">
+                <div class="d-flex mb-3">
+                    <input asp-for="Input.CurrentPassword" class="form-control form-control-lg me-2" style="width: 70%;" placeholder="Current Password" />
+                </div>
+                <div class="d-flex mb-3">
+                    <input asp-for="Input.NewPassword" class="form-control form-control-lg me-2" style="width: 70%;" placeholder="New Password" />
+                </div>
+                <div class="d-flex mb-3">
+                    <input asp-for="Input.ConfirmPassword" class="form-control form-control-lg me-2" style="width: 70%;" placeholder="Confirm New Password" />
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 30%;">Update Password</button>
+                </div>
+                <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </form>
+
+            <!-- Delete Account -->
+            <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-danger btn-lg px-5">Delete Account</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial" />

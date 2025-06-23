@@ -1,0 +1,22 @@
+﻿@model IEnumerable<GearUp.Models.Vehicle>
+@{
+    ViewData["Title"] = "Luxury Vehicles";
+}
+
+<div class="position-relative text-white mb-5">
+    <img src="~/pics/lx2.jpg" class="img-fluid w-100" style="height: 300px; object-fit: cover; filter: brightness(60%);" />
+    <div class="position-absolute top-50 start-50 translate-middle text-center">
+        <h1 class="display-5 fw-bold">Experience Luxury with GearUp</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var vehicle in Model)
+        {
+            @await Html.PartialAsync("_CarPartial", vehicle)
+
+        }
+    </div>
+</div>
+

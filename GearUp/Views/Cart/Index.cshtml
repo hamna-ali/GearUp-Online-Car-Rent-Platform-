@@ -1,0 +1,98 @@
+﻿@model GearUp.Models.Cart
+
+@{
+    ViewData["Title"] = "Your Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mt-4 text-white">Your Cart</h2>
+
+@if (TempData["CartMessage"] != null)
+{
+    var success = TempData["CartSuccess"] as bool?;
+    <div class="alert @(success == true ? "alert-success" : "alert-danger")">
+        @TempData["CartMessage"]
+    </div>
+}
+@if (TempData["BookingSuccess"] != null)
+{
+    <script>
+        window.onload = function () {
+            alert('@TempData["BookingSuccess"]'); // Simple popup
+        };
+    </script>
+}
+@if (Model == null || !Model.CartItems.Any())
+{
+    <div class="alert alert-info mt-4">
+        <strong>Your cart is empty.</strong>
+        <p>Browse vehicles and add them to your cart to continue.</p>
+    </div>
+}
+else
+{
+    <table class="table table-dark table-hover table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Vehicle</th>
+                <th>Rent/Day</th>
+                <th>Days</th>
+                <th>Add-ons</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr data-vehicle-id="@item.Vehicle.VehicleID">
+                    <td>
+                        @item.Vehicle.Brand @item.Vehicle.Model
+                    </td>
+                    <td>Rs. @item.Vehicle.RentPerDay</td>
+                    <td>
+                        <input type="number" name="noOfDays" data-vehicle-id="@item.Vehicle.VehicleID" value="@item.NoOfDays" min="1" class="form-control form-control-sm auto-update" />
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input auto-update" type="checkbox" name="includeCarWash" data-vehicle-id="@item.Vehicle.VehicleID" @(item.IncludeCarWash ? "checked" : "") />
+                            <label class="form-check-label">Car Wash (+Rs. 500)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input auto-update" type="checkbox" name="includeCarDecor" data-vehicle-id="@item.Vehicle.VehicleID" @(item.IncludeCarDecor ? "checked" : "") />
+                            <label class="form-check-label">Car Decor (+Rs. 2000)</label>
+                        </div>
+                    </td>
+                    @* <td class="item-total"><strong>Rs. @item.TotalPrice</strong></td> *@
+                    <td class="item-total" data-vehicle-id="@item.Vehicle.VehicleID">
+                        <strong>Rs. @item.TotalPrice</strong>
+                    </td>
+
+
+                    <td>
+                        <form asp-action="RemoveFromCart" method="post" class="remove-form">
+                            <input type="hidden" name="vehicleId" value="@item.Vehicle.VehicleID" />
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="text-end"><strong>Total Bill:</strong></td>
+                <td id="total-bill"><strong>Rs. @Model.TotalBill</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+<div class="text-end mt-3">
+    <form asp-controller="Booking" asp-action="Checkout" method="post">
+        <button type="submit" class="btn btn-success btn-lg">
+            Proceed to Checkout
+        </button>
+    </form>
+</div>
+@section Scripts {
+    <script src="~/js/cart.js"></script>
+}

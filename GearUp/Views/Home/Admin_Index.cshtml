@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<header id="home">
+    <div id="carCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+
+        <div class="carousel-inner">
+            @for (int i = 1; i <= 17; i++)
+            {
+                string imgSrc = $"~/pics/img{i}.jpg";
+                <div class="carousel-item @(i == 1 ? "active" : "")">
+                    <img src="@Url.Content(imgSrc)" class="d-block w-100 carousel-image" alt="Car @i">
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+</header>
+
+<!-- Cars Section -->
+<section id="cars" class="py-5">
+    <div class="container">
+        <h2 class="text-center">Available Cars</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card h-100 d-flex flex-column">
+                    <div class="flex-grow-1">
+                        
+                        <a href="@Url.Action("Add", "Vehicle")">
+                            <img src="@Url.Content("~/pics/img44.jpg")" class="card-img-top w-100 h-100 object-fit-cover" alt="Add Car">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Add Vehicle</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <a href="@Url.Action("Update", "Vehicle")">
+                            <img src="@Url.Content("~/pics/img5.jpg")" class="card-img-top w-100 h-100 object-fit-cover" alt="Update Car">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Update Vehicle</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 d-flex flex-column">
+                    <div class="flex-grow-1">
+                        <a href="@Url.Action("Delete", "Vehicle")">
+                            <img src="@Url.Content("~/pics/img23.jpg")" class="card-img-top w-100 h-100 object-fit-cover" alt="Delete Car">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Delete Vehicle</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Ensure the carousel takes up the full screen */
+    #carCarousel {
+        height: 100vh; /* Full viewport height */
+        position: relative;
+        width: 100%; /* Ensure full width */
+    }
+
+    /* Ensure images are stretched to cover the full screen */
+    .carousel-item img {
+        object-fit: cover; /* Ensure the image covers the area of the container */
+        width: 100%; /* Full width of the carousel */
+        height: 100vh; /* Full viewport height */
+    }
+
+    /* Optional: Adjust carousel control buttons to be centered */
+    .carousel-control-prev,
+    .carousel-control-next {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+</style>

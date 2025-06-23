@@ -1,0 +1,39 @@
+﻿version: '3.8'
+
+services:
+  GearUpDB:
+    container_name: GearUpDB
+    image: custom-sqlserver
+    build:
+      context: .
+      dockerfile: Dockerfile.sqlserver
+    environment:
+      MSSQL_SA_PASSWORD: "Dotnet@123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - GearUpNetwork
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - /c/Users/AHSAN:/var/opt/mssql/backup
+
+  gearup:
+    container_name: gearup
+    image: gearup
+    ports:
+      - "5000:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - GearUpDB
+    networks:
+      - GearUpNetwork
+
+networks:
+  GearUpNetwork:
+    driver: bridge
+
+volumes:
+  sqlserver_data:

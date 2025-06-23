@@ -1,0 +1,108 @@
+﻿@model GearUp.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Update Rent";
+}
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card custom-card shadow-lg px-4 py-4" style="width: 400px;">
+        <div class="card-header text-center mb-3">
+            <h3>Update Rent</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Update" asp-controller="Vehicle" method="post" id="updateForm">
+                <!-- Plate Number -->
+                <div class="form-group mb-3">
+                    <label for="PlateNumber">Plate Number</label>
+                    <input type="text" class="form-control" id="PlateNumber" name="PlateNumber" value="@Model?.PlateNumber" required />
+                </div>
+
+                <!-- Rent Per Day -->
+                <div class="form-group mb-4">
+                    <label for="RentPerDay">New Rent Per Day</label>
+                    <input type="number" class="form-control" id="RentPerDay" name="RentPerDay" value="@Model?.RentPerDay" min="0" required />
+                    <small class="text-danger" id="rentError" style="display:none;">Rent cannot be negative.</small>
+                </div>
+
+                <button type="submit" class="btn custom-btn w-100">Update Rent</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Pop-up Message -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="custom-popup text-center mt-3" id="popupMessage">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="custom-popup text-center mt-3" id="popupMessage">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Hide popup after 2 seconds
+            if ($("#popupMessage").length) {
+                setTimeout(function () {
+                    $("#popupMessage").fadeOut();
+                }, 2000);
+            }
+
+            // Prevent negative rent
+            $("#updateForm").on("submit", function (e) {
+                const rent = parseFloat($("#RentPerDay").val());
+                if (rent < 0) {
+                    e.preventDefault();
+                    $("#rentError").show();
+                } else {
+                    $("#rentError").hide();
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    body {
+        background-color: black;
+    }
+
+    .custom-card {
+        background-color: #333; /* Dark grey */
+        color: white;
+        border-radius: 12px;
+    }
+
+    .form-control {
+        background-color: #f0f0f0; /* Light grey */
+        color: black;
+    }
+
+    .custom-btn {
+        background-color: #f0f0f0;
+        color: black;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .custom-btn:hover {
+            background-color: #333;
+            color: white;
+        }
+
+    .custom-popup {
+        background-color: #f0f0f0;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 8px;
+        width: 400px;
+        margin: 20px auto;
+        font-weight: bold;
+    }
+</style>
