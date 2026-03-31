@@ -1,15 +1,15 @@
-# 🚗 GearUp – Online Car Rent Platform
+# GearUp – Online Car Rent Platform
 
 **GearUp** is a dynamic car rental web application built with ASP.NET MVC. It enables customers to book vehicles by city and category, with optional services like drivers, car washes, and event decorations. Admins can manage inventory, prices, and bookings through a dedicated dashboard.
 
 🔗 **Live Demo** (optional): *[Add if hosted]*  
-📂 **Repository:** [https://github.com/hamna-ali/GearUp-Online-Car-Rent-Platform](https://github.com/hamna-ali/GearUp-Online-Car-Rent-Platform)
+**Repository:** [https://github.com/hamna-ali/GearUp-Online-Car-Rent-Platform](https://github.com/hamna-ali/GearUp-Online-Car-Rent-Platform)
 
 ---
 
-## ✨ Features
+## Features
 
-### 👥 Role-Based System
+### Role-Based System
 - **Customers**: Sign up, log in, browse cars, add services, book cars, and receive invoices.
 - **Admins**: Manage vehicles, bookings, services, and view all payments.
 
@@ -33,7 +33,7 @@
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Framework**: ASP.NET MVC (C#)
 - **Frontend**: Razor Views, Bootstrap, jQuery
@@ -43,7 +43,7 @@
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - Visual Studio 2022 or later
